@@ -1,0 +1,58 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>My Books App</title>
+    <!-- Static Load -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+
+<body>
+<div id="box">
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <img src="{% static 'images/book.png' %}" alt="book icon">
+            <a href="{% url 'home page' %}">Home</a>
+            <form action="{% url 'search results' %}" method="get">
+                <input name="q" type="text" placeholder="Search...">
+            </form>
+            <ul>
+                <!--Only for user with logged in users-->
+                {% if request.user.is_authenticated %}
+                <li><a href="{% url 'forum' %}">Forum</a></li>
+                <li><a href="{% url 'add book' %}">Add Book</a></li>
+                <li><a href="{% url 'borrowed books' pk=user.pk %}">Borrowed Books</a></li>
+                <li><a href="{% url 'my books' pk=user.pk %}">My Books</a></li>
+                <li><a href="{% url 'my borrowed books' pk=user.pk %}">My Borrowed Books</a></li>
+                <li><a href="{% url 'profile details' pk=user.pk %}">My Profile</a></li>
+                <li><a href="{% url 'my conversations' %}">Messages</a></li>
+                <li><a href="{% url 'sign out' %}">Sign Out</a></li>
+                {% else %}
+                <li><a href="{% url 'sign up' %}">Sign Up</a></li>
+                <li><a href="{% url 'sign in' %}">Sign In</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <!-- End Navigation Bar -->
+    {% block content %}
+
+    <!-- Main Content -->
+    {% endblock %}
+    <!-- Footer -->
+    <footer>
+        <div>
+            &copy;Project Defence 2022. All rights reserved.
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!--Details Page-->
+<section id="detailsPage">
+    <div class="wrapper">
+
+        <div class="albumCover">
+            <!-- Album Image -->
+            <!-- <img src="{{ book.image.url }}" alt="Book Image"> -->
+            <img src="{{ book.image.url }}" width="323" height="auto" alt="Not Found" onerror=this.src="{% static 'images/no-image-available-icon.jpg' %}">
+        </div>
+
+        <div class="albumInfo">
+
+            <div class="albumText">
+                <!-- Album Info -->
+                <h1>Title: {{ book.title }}</h1>
+                <h3>Autor: {{ book.autor }}</h3>
+                <h4>Genre: {{ book.genre }}</h4>
+
+                {% if book.description %}
+                    <h4>Description: {{ book.description }}</h4>
+                {% endif %}
+                
+                <h4>Publisher: {{ book.publisher }}</h4>
+                <h4>Year Of Publication: {{ book.year_of_publication }}</h4>
+                <h4>Owner: {{ book.owner }}</h4>
+
+                {% if book.is_borrow %}
+                    <h4>Borrower: {{ book.borrower }}</h4>
+                    <h4>Occupied: {{ remaining }} days </h4>
+                {% endif %}
+
+                <h4>Borrow Counter: {{ book.borrow_counter }}</h4>
+            </div>
+            
+            <div class="actionBtn">
+                {% if request.user.is_authenticated %}
+                    {% if not book.is_borrow and not book.owner_id == user.pk %}
+                        <a href="{% url 'book borrow' pk=book.pk %}" class="borrow">Borrow</a>
+                    {% endif %}
+                    {% if book.is_borrow and book.owner_id == user.pk %}
+                        <a href="{% url 'book returned' pk=book.pk %}">Returned</a>
+                    {% endif %}
+                    {% if book.owner_id == user.pk %}
+                        <a href="{% url 'book edit' pk=book.pk %}" class="edit">Edit</a>
+                        <a href="{% url 'book delete' pk=book.pk %}" class="remove">Delete</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

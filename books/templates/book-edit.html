@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Edit Page-->
+<section class="editPage">
+    <form method="post" action="{% url 'book edit' pk=object.pk %}">
+        <fieldset>
+            <legend>Edit Book</legend>
+            <div class="container">
+                {{ form }}
+                <button class="edit-album" type="submit">Edit Book</button>
+                {% csrf_token %}
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+{% endblock %}

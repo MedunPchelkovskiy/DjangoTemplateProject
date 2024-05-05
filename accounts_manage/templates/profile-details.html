@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Details Page-->
+<section id="detailsPage">
+    <div class="wrapper">
+        <!-- <div class="profilePage">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                 alt="Profile Image">
+        </div> -->
+
+        <div class="profileText">
+            <!-- Profile Info -->
+             <!-- {% if object.first_name %} -->
+            <h1>First Name: {{ object.first_name }}</h1>
+            <!-- {% endif %} -->
+             <!-- {% if object.last_name %} -->
+            <h1>Last Name: {{ object.last_name }}</h1>
+            <!-- {% endif %} -->
+            <!-- {% if object.age %} -->
+            <h1>Age: {{ object.age }}</h1> 
+            <!-- {% endif %} -->
+        </div>
+
+        <div class="actionBtn">
+            <!-- Button for Deleting the Profile -->
+            {% if object.first_name or object.last_name or object.age %}
+            <a href="{% url 'add profile details' pk=user.pk %}" class="edit">Edit</a>
+            <a href="{% url 'user delete' pk=user.pk %}" class="remove">Delete</a>
+            {% else %}
+            <a href="{% url 'add profile details' pk=user.pk %}" class="addinfo">Add Profile Info</a>
+            <a href="{% url 'user delete' pk=user.pk %}" class="remove">Delete</a>
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

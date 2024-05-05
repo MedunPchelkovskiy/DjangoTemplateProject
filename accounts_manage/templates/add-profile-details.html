@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Details Page
+<section class="createPage">
+    <div class="wrapper">
+        <!-- <div class="profilePage">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                 alt="Profile Image">
+        </div> -->
+
+        <!-- <form method="post" action="add profile details">
+           {{ form }}
+           {% csrf_token %}
+        </form>
+        <button class="add-profile-info" type="submit">Save</button>
+
+    </div>
+</section> --> -->
+
+
+
+
+<section class="createPage">
+
+    <form method="post" action="{% url 'add profile details' pk=user.pk %}">
+        <fieldset>
+            <legend>Profile Info</legend>
+            <div class="container">
+
+                <!-- Form for Adding Album -->
+                {{ form }}
+                <!-- Button for Adding Album -->
+                <button class="add-album" type="submit">Save</button>
+                {% csrf_token %}
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+{% endblock %}

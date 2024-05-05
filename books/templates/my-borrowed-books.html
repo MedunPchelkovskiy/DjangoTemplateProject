@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Catalog with Albums-->
+<section id="catalogPage">
+{% if not books %}
+    <!--  If No albums in catalog -->
+    <p>No Borrowed Books!</p>
+{% else %}
+    
+        <!-- If albums in catalog -->
+        <h1>My Borrowed Books</h1>
+        <!-- First Card-Box in catalog -->
+        {% for book in books %}
+            <a href="{% url 'book details' pk=book.pk %}">
+                <div class="card-box">
+                    <img src="{{ book.image.url }}" width="200" height="200" alt="Not Found" onerror=this.src="{% static 'images/no-image-available-icon.jpg' %}">
+                    <div>
+                        <div class="text-center">
+                            <p class="name">Title: {{ book.title }}</p>
+                            <p class="autor">Autor: {{ book.autor }}</p>
+                            <p class="genre">Genre: {{ book.genre }}</p>
+                            <p class="price">Publisher: {{ book.publisher }}</p>
+                            <p class="price">Borrower: {{ book.borrower }}</p>
+                            <p class="price">Occupied until: {{ book.return_date }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+{% endif %}
+{% endblock %}
+    <!-- End First Card-Box in catalog --
+
+</section>

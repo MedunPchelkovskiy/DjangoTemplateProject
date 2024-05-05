@@ -1,0 +1,50 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>My Books App Forum</title>
+    <!-- Static Load -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+
+<body>
+<div id="box">
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <img src="{% static 'images/book.png' %}" alt="book icon">
+            <a href="{% url 'home page' %}">Home</a>
+                <form class="form-inline" action="{% url 'filtered topics' %}" method="POST">
+                        {{ filter_form }}
+                        {% csrf_token %}
+                    <button type="submit" class="btn btn-primary mb-2">SEARCH</button>
+                </form>
+            
+            <ul>
+                <!--Only for logged in users-->
+                    <li><a href="{% url 'add topic' %}">New Topic</a></li>
+                    <li><a href="{% url 'sign out' %}">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- End Navigation Bar -->
+    {% block content %}
+
+    <!-- Main Content -->
+    {% endblock %}
+    <!-- Footer -->
+    <footer>
+        <div>
+            &copy;Project Defence 2022. All rights reserved.
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+<!-- Catalog with Books-->
+<section id="catalogPage">
+    {% if not object_list %}
+    <!--  If No books in catalog -->
+    <p>No Books in Library!</p>
+    {% else %}
+
+    <!-- If books in catalog -->
+    <h1>All Books</h1>
+    <!-- First Card-Box in catalog -->
+    {% for book in object_list %}
+    <a href="{% url 'book details' pk=book.pk %}">
+        <div class="card-box">
+            <!-- <img src="{{ book.image.url }}" width="200" height="200" alt={% static 'images/no-image-available-icon.jpg' %}> -->
+            <img src="{{ book.image.url }}" width="200" height="200" alt="Not Found" onerror=this.src="{% static
+            'images/no-image-available-icon.jpg' %}">
+            <div>
+                <div class="text-center">
+                    <p style="color:rgb(212, 218, 218);" class="name">title: {{ book.title }}</p>
+                    <p style="color:rgb(212, 218, 218);" class="autor">autor: {{ book.autor }}</p>
+                    <p style="color:rgb(212, 218, 218);" class="genre">genre: {{ book.genre }}</p>
+                    <p style="color:rgb(212, 218, 218);" class="price">publisher: {{ book.publisher }}</p>
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+    {% endif %}
+    {% endblock %}
+    <!-- End  Card-Box in catalog --
+
+</section>
