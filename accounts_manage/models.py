@@ -16,6 +16,13 @@ class LibraryUser(AbstractBaseUser, PermissionsMixin):
         null=False,
         blank=False)
 
+    email = models.EmailField(
+        max_length=50,
+        validators=[MinLengthValidator(2)],
+        unique=True,
+        null=False,
+        blank=False)
+
     date_joined = models.DateTimeField(auto_now_add=True)
 
     is_staff = models.BooleanField(default=False)

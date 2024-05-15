@@ -27,7 +27,7 @@ class Publishers(models.Model):
         return self.publisher_name
 
 
-class Autors(models.Model):
+class Authors(models.Model):
     class Meta:
         ordering = ('name',)
 
@@ -64,8 +64,8 @@ class Books(models.Model):
     )
 
     autor = models.ForeignKey(
-        Autors,
-        null=True,
+        Authors,
+        null=False,
         blank=False,
         on_delete=models.RESTRICT
 
