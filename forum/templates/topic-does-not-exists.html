@@ -1,0 +1,14 @@
+{% extends 'forum-base.html' %}
+{% load static %}
+{% block content %}
+
+<!--Details Page-->
+<section id="detailsPage">
+    <div class="wrapper">
+        <div class="albumInfo">
+                <h2>There is no topics in this category</h2> 
+                {% csrf_token %}
+        </div>
+    </div>
+</section>
+{% endblock %}

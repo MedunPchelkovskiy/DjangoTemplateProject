@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Details Page-->
+<section id="detailsPage">
+    <div class="wrapper">
+        <div class="albumInfo">
+            <div class="albumText">
+                <!-- Album Info -->
+                <h1>topic: {{ topic.topic_name }}</h2>
+                <h3 style="color:rgb(165, 170, 170);"> author: {{ topic.topic_author }}</h3>
+                <h3 style="color:rgb(165, 170, 170);"> comments: {{ topic.posts_count }}</h3>
+
+                    {% for post in posts %}
+                    <ul>
+                        <h5>{{ post.post_author }} - {{ post.date_time_of_post }}:</h5>
+                        <h3 style="color:rgb(247, 203, 4);"> {{ post.text_of_post }}</h3>
+                        <h3> ----------------------------------------------------------------------------------------------</h3>
+                    </ul>
+                    {% endfor %}
+               
+            
+
+                <form method="post" action="{% url 'posts topic' pk=topic.pk %}" style="color:white;">
+                    {{ form }}
+                    {% csrf_token %}
+
+                    <div class="actionBtn">
+                        <button class="add-album" type="submit">post</button>
+                    </div>
+                </form>
+
+            </div>  
+            
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

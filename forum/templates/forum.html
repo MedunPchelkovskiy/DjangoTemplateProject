@@ -1,0 +1,35 @@
+{% extends 'forum-base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Catalog with Albums-->
+<section id="catalogPage">
+{% if not object_list %}
+    <!--  If No albums in catalog -->
+    <p>No Topics in Forum!</p>
+{% else %}
+    
+        <!-- If albums in catalog -->
+        <h1>All Topics</h1>
+        <!-- First Card-Box in catalog -->
+        {% for topic in object_list %}
+            <a href="{% url 'posts topic' pk=topic.pk %}">
+                <div class="card-box">
+                    <img src="{% static 'images/chat-vector-icon-shadow-on-260nw-230937046.webp' %}" alt="Cover Image">
+                        <div class="text-center">
+                            <p class="name">topic_name: {{ topic.topic_name }}</p>
+                            <p class="autor">created by: {{ topic.topic_author }}</p>
+                            <p class="genre">category: {{ topic.category }}</p>
+                            <p class="price">created: {{ topic.topic_creation_date_time }}</p>
+                            <p class="price">comments: {{ topic.posts_count }}</p>
+                        </div>
+                </div>
+            </a>
+        {% endfor %}
+{% endif %}
+{% endblock %}
+    <!-- End First Card-Box in catalog --
+
+</section>
+

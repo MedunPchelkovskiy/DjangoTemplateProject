@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'books',
     'common',
     'accounts_manage',
+    'forum',
 
 ]
 
