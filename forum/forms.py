@@ -44,3 +44,7 @@ class CreatePostForm(forms.ModelForm):
         widgets = {
             'text_of_post': forms.TextInput(attrs={'placeholder': 'Add post'})
         }
+
+
+class SearchDiscussionForm(forms.Form):
+    discussion_search_field = forms.ChoiceField(choices=DISCUSSIONS_CHOICES)
