@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'common',
     'accounts_manage',
     'forum',
+    'personal_messages',
 
 ]
 
