@@ -11,6 +11,9 @@
 
         <div class="profileText">
             <!-- Profile Info -->
+            <!-- {% if object.first_name %} -->
+            <h1>Email: {{ object.email }}</h1>
+            <!-- {% endif %} -->
              <!-- {% if object.first_name %} -->
             <h1>First Name: {{ object.first_name }}</h1>
             <!-- {% endif %} -->
@@ -24,7 +27,7 @@
 
         <div class="actionBtn">
             <!-- Button for Deleting the Profile -->
-            {% if object.first_name or object.last_name or object.age %}
+            {% if object.first_name or object.last_name or object.age or object.email %}
             <a href="{% url 'add profile details' pk=user.pk %}" class="edit">Edit</a>
             <a href="{% url 'user delete' pk=user.pk %}" class="remove">Delete</a>
             {% else %}

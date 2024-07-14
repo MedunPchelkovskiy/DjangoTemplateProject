@@ -45,14 +45,16 @@ class SignInForm(AuthenticationForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['first_name', 'last_name', 'age']
+        fields = ['email', 'first_name', 'last_name', 'age',]
         labels = {
+            'email': 'Email',
             'first_name': 'First Name:',
             'last_name': 'Last Name:',
             'age': 'Age:'
         }
 
         widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
             'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
             'age': forms.NumberInput(attrs={'placeholder': 'Age'})

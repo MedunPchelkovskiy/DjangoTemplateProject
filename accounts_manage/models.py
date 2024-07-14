@@ -16,12 +16,7 @@ class LibraryUser(AbstractBaseUser, PermissionsMixin):
         null=False,
         blank=False)
 
-    email = models.EmailField(
-        max_length=50,
-        validators=[MinLengthValidator(2)],
-        unique=True,
-        null=False,
-        blank=False)
+
 
     date_joined = models.DateTimeField(auto_now_add=True)
 
@@ -36,6 +31,14 @@ class LibraryUser(AbstractBaseUser, PermissionsMixin):
 
 
 class UserProfile(models.Model):
+
+    email = models.EmailField(
+        max_length=50,
+        validators=[MinLengthValidator(2)],
+        unique=True,
+        null=True,
+        blank=True)
+
     first_name = models.CharField(
         max_length=30,
         validators=[MinLengthValidator(2)],

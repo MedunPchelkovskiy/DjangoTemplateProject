@@ -28,6 +28,8 @@
                 <li><a href="{% url 'forum' %}">Forum</a></li>
                 <li><a href="{% url 'add book' %}">Add Book</a></li>
 
+                <li><a href="{% url 'profile details' pk=user.pk %}">My Profile</a></li>
+
                 <li><a href="{% url 'sign out' %}">Sign Out</a></li>
                 {% else %}
                 <li><a href="{% url 'sign up' %}">Sign Up</a></li>

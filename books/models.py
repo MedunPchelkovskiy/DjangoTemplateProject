@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
+from datetime import timezone
+from cloudinary import models as cloudinary_models
 
 UserModel = get_user_model()
 
@@ -50,7 +52,7 @@ class Books(models.Model):
     title = models.CharField(max_length=234)
     description = models.TextField(max_length=300, validators=(MinLengthValidator(10),), blank=True,
                                    null=True)  # TODO:
-    # image = cloudinary_models.CloudinaryField(null=True, blank=True, )
+    image = cloudinary_models.CloudinaryField(null=True, blank=True, )
     genre = models.CharField(max_length=30, choices=GENRES_CHOICES)
     owner = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=False, blank=False)
     year_of_publication = models.PositiveIntegerField()

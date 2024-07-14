@@ -34,10 +34,10 @@ class SignInView(LoginView):
 
 class SignOutView(LogoutView):
     template_name = 'sign-out.html'
-    succes_url = reverse_lazy('home page')
+    success_url = reverse_lazy('home page')
 
 
-class ProfileDeleteView(LoginRequiredMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = UserModel
     fields = '__all__'
     template_name = 'user-delete.html'
