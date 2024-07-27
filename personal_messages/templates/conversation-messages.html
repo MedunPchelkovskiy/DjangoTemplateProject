@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Conversation Details Page-->
+<section id="detailsPage">
+    <div class="wrapper">
+        <div class="albumInfo">
+            <div class="albumText">
+                <!-- Conversation Info -->
+                    {% for message in readed_messages %}
+                    <ul>
+                        <h5>{{ message.message_author }} - {{ message.message_date_time }}:</h5>
+                        <h3 style="color:rgb(53, 247, 4);"> {{ message.message_content }}</h3>
+                        <h3> ----------------------------------------------------------------------------------------------</h3>
+                    </ul>
+                    {% endfor %}
+
+                <form method="post" action="{% url 'get messages for conversation' pk=conversation.pk %}" style="color:white;">
+                    {{ message_form }}
+                    {% csrf_token %}
+
+                    <div class="actionBtn">
+                        <button class="add-message" type="submit">SEND</button>
+                    </div>
+                </form>
+            </div>             
+        </div>
+    </div>
+</section>
+{% endblock %}

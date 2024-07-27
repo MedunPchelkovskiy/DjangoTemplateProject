@@ -1,0 +1,56 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>My Conversations</title>
+    <!-- Static Load -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+
+<body>
+<div id="box">
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <img src="{% static 'images/book.png' %}" alt="book icon">
+            <a href="{% url 'home page' %}">Home</a>            
+            <ul>
+                <!--Only for logged in users-->
+                    <li><a href="{% url 'create conversation' %}">New Conversation</a></li>
+                    <li><a href="{% url 'sign out' %}">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- End Navigation Bar -->
+
+<!--Create Page-->
+<section class="createPage">
+
+    <form method="post" action="{% url 'create conversation' %}">
+        <fieldset>
+            <legend>New Conversation</legend>
+            <div class="container">
+                {{ form }}                
+                <button class="add-album" type="submit">send</button>
+            </div>
+            {% csrf_token %}
+        </fieldset>
+    </form>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            &copy;Project Defence 2022. All rights reserved.
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+</div>
+</body>
+</html>

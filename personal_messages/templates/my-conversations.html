@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>My Books App</title>
+    <!-- Static Load -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+
+<body>
+<div id="box">
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <img src="{% static 'images/book.png' %}" alt="book icon">
+            <a href="{% url 'home page' %}">Home</a>
+            <form action="{% url 'search results' %}" method="get">
+                <input name="q" type="text" placeholder="Search...">
+            </form>
+            <ul>
+                <!--Only for user with logged in users-->
+                    <li><a href="{% url 'create conversation' %}">New Conversation</a></li>
+                    <li><a href="{% url 'sign out' %}">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- End Navigation Bar -->
+
+
+<!-- Catalog with Albums-->
+<section id="catalogPage">
+{% if not checked_conversations %}
+    <!--  If No albums in catalog -->
+    <p>No conversations</p>
+{% else %}
+    
+        <!-- If conversations in catalog -->
+        <h1>My Conversations</h1>
+        <!-- First Card-Box in catalog -->
+        {% for conversation in checked_conversations %}
+        <a href="{% url 'get messages for conversation' pk=conversation.pk %}">
+            <div class="card-box">
+                <div>
+                    <div class="text-center">
+                        {% if conversation.last_unread_message_owner != None and conversation.last_unread_message_owner != current_user  %}
+                            <h4 style="color:rgb(247, 4, 65);">new messages</h4>
+                        {% endif %}
+
+                        {% if current_user == conversation.initiator %}
+                            <h2>{{ conversation.participant }} - chat</h3>
+                        {% else %}
+                            <h2>{{ conversation.initiator }} - chat</h3>
+                        {% endif %}
+                    
+                        <!-- <p class="autor">initiator: {{ conversation.initiator }}</p>
+                        <p class="genre">participant: {{ conversation.participant }}</p>                         -->
+                    </div>                
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+{% endif %}
+    <!-- End First Card-Box in catalog -->
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            &copy;Project Defence 2022. All rights reserved.
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+</div>
+</body>
+</html>
